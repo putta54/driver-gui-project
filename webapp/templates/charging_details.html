@@ -1,0 +1,105 @@
+<!-- charging_details.html -->
+<div class="form-group mt-3">
+    <div class="section-header" data-target="#charging-details">
+        <h4 style="font-weight: 500; font-size: 1.5rem; text-align: left;">Charging Details</h4>
+        <span class="collapse-toggle" aria-expanded="true">+</span>
+    </div>
+    <hr>
+    <div id="charging-details" class="collapse show">
+        <!-- Fields for charging details -->
+        <div class="row">
+            <!-- Start Time -->
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label for="charging_start_time" class="form-label" style="font-size: 0.875rem; font-weight: 400;">Start Time</label>
+                    <select class="form-control" id="charging_start_time" name="charging_start_time">
+                        <option value="" disabled selected>--- Please select ---</option>
+                        {% for hour in range(6, 24) %}
+                            <option value="{{ hour }}:00">{{ hour }}:00</option>
+                            <option value="{{ hour }}:30">{{ hour }}:30</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+            <!-- Start Odometer -->
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label for="charging_start_odo" class="form-label" style="font-size: 0.875rem; font-weight: 400;">Start Odometer</label>
+                    <input type="number" class="form-control" id="charging_start_odo" name="charging_start_odo" placeholder="0">
+                </div>
+            </div>
+            <!-- Start SOC -->
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label for="charging_start_soc" class="form-label" style="font-size: 0.875rem; font-weight: 400;">Start SOC</label>
+                    <input type="number" class="form-control" id="charging_start_soc" name="charging_start_soc" placeholder="0">
+                </div>
+            </div>
+            <!-- Start Energy Meter Reading -->
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label for="charging_start_energy" class="form-label" style="font-size: 0.875rem; font-weight: 400;">Start Energy Meter Reading</label>
+                    <input type="number" class="form-control" id="charging_start_energy" name="charging_start_energy" placeholder="0">
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- End Time -->
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="charging_end_time" class="form-label" style="font-size: 0.875rem; font-weight: 400;">End Time</label>
+                    <select class="form-control" id="charging_end_time" name="charging_end_time">
+                        <option value="" disabled selected>--- Please select ---</option>
+                        {% for hour in range(6, 24) %}
+                            <option value="{{ hour }}:00">{{ hour }}:00</option>
+                            <option value="{{ hour }}:30">{{ hour }}:30</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+            <!-- End SOC -->
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="charging_end_soc" class="form-label" style="font-size: 0.875rem; font-weight: 400;">End SOC</label>
+                    <input type="number" class="form-control" id="charging_end_soc" name="charging_end_soc" placeholder="0">
+                </div>
+            </div>
+            <!-- End Energy Meter Reading -->
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="charging_end_energy" class="form-label" style="font-size: 0.875rem; font-weight: 400;">End Energy Meter Reading</label>
+                    <input type="number" class="form-control" id="charging_end_energy" name="charging_end_energy" placeholder="0">
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Time to Charge on Speedo -->
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="time_to_charge" class="form-label" style="font-size: 0.875rem; font-weight: 400;">Time to Charge on Speedo</label>
+                    <select class="form-control" id="time_to_charge" name="time_to_charge">
+                        <option value="" disabled selected>--- Please select ---</option>
+                        {% for hour in range(11) %}
+                            <option value="{{ hour }}:00">{{ hour }}:00</option>
+                            <option value="{{ hour }}:30">{{ hour }}:30</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+            <!-- Charging Meter No. -->
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="charging_meter_no" class="form-label" style="font-size: 0.875rem; font-weight: 400;">Charging Meter No.</label>
+                    <select class="form-control" id="charging_meter_no" name="charging_meter_no">
+                        <option value="" disabled selected>--- Please select ---</option>
+                        {% for meter_no in range(1, 6) %}
+                            <option value="Charging meter no. {{ meter_no }}">Charging meter no. {{ meter_no }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

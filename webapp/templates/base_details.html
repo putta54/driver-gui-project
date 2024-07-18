@@ -1,0 +1,127 @@
+{% extends 'base.html' %}
+{% block title %}Enter Base Details{% endblock %}
+{% block page_title %}Enter Base Details{% endblock %}
+{% block content %}
+<style>
+    /* Custom styles for base_details.html */
+    .section-title {
+        font-size: 1.5em;
+        font-weight: 500;
+        display: block;
+        margin-top: 20px; /* Adjust as needed */
+    }
+
+    .form-section {
+        margin-top: 10px; /* Adjust as needed */
+    }
+</style>
+
+<form id="baseDetailsForm" action="{{ url_for('vehicle_running_details') }}" method="POST">
+    <input type="hidden" name="role" value="{{ role }}">
+
+    <!-- Driver Details section -->
+    <div class="form-section">
+        <label class="section-title">Driver Details</label>
+        <hr>
+        <div class="text-center">
+            <label for="driver">Select Driver:</label>
+        </div>
+        <select class="form-control form-control-lg" id="driver" name="driver" required>
+            <option value="" disabled selected>Select driver</option>
+            <option value="Driver 1">Driver 1</option>
+            <option value="Driver 2">Driver 2</option>
+        </select>
+    </div>
+
+    <!-- Vehicle Details section -->
+    <div class="form-section">
+        <label class="section-title">Vehicle Details</label>
+        <hr>
+        <div class="row">
+            <div class="col-md-6 text-center">
+                <label for="fuel_mode">Select Fuel Mode:</label>
+                <select class="form-control form-control-lg" id="fuel_mode" name="fuel_mode" required onchange="updateVehicleOptions()">
+                    <option value="" disabled selected>--- Please select ---</option>
+                    <option value="Electric">Electric</option>
+                    <option value="CNG">CNG</option>
+                    <option value="Petrol">Petrol</option>
+                    <option value="Ethanol">Ethanol</option>
+                    <option value="Diesel">Diesel</option>
+                </select>
+            </div>
+            <div class="col-md-6 text-center">
+                <label for="vehicle" style="display: block;">Select Vehicle:</label>
+                <select class="form-control form-control-lg" id="vehicle" name="vehicle" required>
+                    <option value="" disabled selected>--- Please select ---</option>
+                </select>
+            </div>
+        </div>
+        <!-- Add Vehicle section -->
+        <div class="form-section mt-3">
+            <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#addVehicleSection" aria-expanded="false" aria-controls="addVehicleSection">+ Add Vehicle</button>
+            <div class="collapse" id="addVehicleSection">
+                <div class="form-section">
+                    <label class="section-title">New Vehicle Details</label>
+                    <hr>
+                    <div class="row">
+                        <div class="col-md-6 text-center">
+                            <label for="new_fuel_mode">Fuel Mode:</label>
+                            <select class="form-control form-control-lg" id="new_fuel_mode" name="new_fuel_mode">
+                                <option value="" disabled selected>--- Please select ---</option>
+                                <option value="Electric">Electric</option>
+                                <option value="CNG">CNG</option>
+                                <option value="Petrol">Petrol</option>
+                                <option value="Ethanol">Ethanol</option>
+                                <option value="Diesel">Diesel</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6 text-center">
+                            <label for="new_vehicle_no">Vehicle No:</label>
+                            <input type="text" class="form-control form-control-lg" id="new_vehicle_no" name="new_vehicle_no" placeholder="Enter vehicle number">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation buttons -->
+    <div class="form-group mt-3">
+        <div class="d-flex justify-content-between">
+            <button type="button" class="btn btn-secondary" onclick="history.back()">Back</button>
+            <button type="submit" class="btn btn-primary">Next</button>
+        </div>
+    </div>
+</form>
+
+<script>
+    function updateVehicleOptions() {
+        const fuelMode = document.getElementById('fuel_mode').value;
+        const vehicleDropdown = document.getElementById('vehicle');
+
+        const vehicleOptions = {
+            Electric: ['EV101', 'EV102', 'EV103'],
+            CNG: ['CNG101', 'CNG102', 'CNG103'],
+            Petrol: ['PET101', 'PET102', 'PET103'],
+            Ethanol: ['ETH101', 'ETH102', 'ETH103'],
+            Diesel: ['DSL101', 'DSL102', 'DSL103']
+        };
+
+        while (vehicleDropdown.options.length) {
+            vehicleDropdown.remove(0);
+        }
+
+        if (vehicleOptions[fuelMode]) {
+            vehicleOptions[fuelMode].forEach(vehicle => {
+                const option = new Option(vehicle, vehicle);
+                vehicleDropdown.add(option);
+            });
+        } else {
+            const option = new Option('Please select fuel mode', '');
+            option.disabled = true;
+            option.selected = true;
+            vehicleDropdown.add(option);
+        }
+    }
+</script>
+{% endblock %}

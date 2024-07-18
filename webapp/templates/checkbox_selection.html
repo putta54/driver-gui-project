@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block title %}Select details{% endblock %}
+{% block page_title %}Select details{% endblock %}
+{% block content %}
+<form action="{{ url_for('buttons_display') }}" method="POST" class="text-center">
+    <input type="hidden" name="vehicle" value="{{ vehicle }}">
+    <div class="form-group">
+        <div class="form-check mb-3">
+            <input class="form-check-input mt-2" type="checkbox" id="running_details" name="running_details" value="true">
+            <label class="form-check-label" style="font-size: 1.75rem; display: inline-block; vertical-align: middle; text-align: left;" for="running_details">{{ vehicle }} running details</label>
+        </div>
+        <div class="form-check mb-3">
+            <input class="form-check-input mt-2" type="checkbox" id="charging_details" name="charging_details" value="true">
+            <label class="form-check-label" style="font-size: 1.75rem; display: inline-block; vertical-align: middle; text-align: left;" for="charging_details">{{ vehicle }} charging details</label>
+        </div>
+        <div class="form-check mb-3">
+            <input class="form-check-input mt-2" type="checkbox" id="issue_details" name="issue_details" value="true">
+            <label class="form-check-label" style="font-size: 1.75rem; display: inline-block; vertical-align: middle; text-align: left;" for="issue_details">{{ vehicle }} issue details</label>
+        </div>
+    </div>
+    <div class="d-flex flex-column align-items-center">
+        <button type="submit" class="btn btn-primary mb-2">Next</button>
+        <button type="button" class="btn btn-secondary mb-2" onclick="history.back()">Back</button>
+    </div>
+</form>
+{% endblock %}
